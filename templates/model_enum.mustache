@@ -1,7 +1,12 @@
 
 class {{classname}}
 {
-    {{#enumVars}}
-    public const {{name}} = {{{value}}};
-    {{/enumVars}}
+    {{#allowableValues.enumVars.length}}
+        {{#allowableValues.enumVars}}
+        public const {{name}} = {{{value}}};
+        {{/allowableValues.enumVars}}
+    {{/allowableValues.enumVars.length}}
+    {{^allowableValues.enumVars.length}}
+        // No enum values defined
+    {{/allowableValues.enumVars.length}}
 }
