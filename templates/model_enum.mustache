@@ -1,12 +1,7 @@
 
 class {{classname}}
 {
-   {{#enum}}
-      public const {{enum}} = {{{enum}}};
-   {{/enum}}
-
-
-
-{{#lambdas.equals}}{{classname}}   {{serverUrl}}
-{{/lambdas.equals}}
+    {{#enumVars}}
+    public const {{name}} = {{{value}}};
+    {{/enumVars}}
 }
