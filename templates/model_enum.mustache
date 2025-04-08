@@ -1,7 +1,7 @@
 
 class {{classname}}
 {
-    {{#enumValues}}
-    const {{{value}}} = "{{{value}}}";
-    {{/enumValues}}
+   {{#enumVars}}
+      public const {{enumName}} = {{{enumName}}};
+   {{/enumVars}}
 }
