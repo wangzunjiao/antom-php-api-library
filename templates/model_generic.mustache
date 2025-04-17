@@ -110,7 +110,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
      */
     public static function isNullable(string $property): bool
     {
-        return self::openAPINullables()[$property]  false;
+        return self::openAPINullables()[$property] ?? false;
     }
 
     /**
@@ -239,14 +239,14 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         {{#parentSchema}}
         parent::__construct($data);
 
         {{/parentSchema}}
         {{#vars}}
-        $this->setIfExists('{{name}}', $data  [], null);
+        $this->setIfExists('{{name}}', $data ?? [], null);
         {{/vars}}
         {{#discriminator}}
 
@@ -270,7 +270,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
             $this->openAPINullablesSetToNull[] = $variableName;
         }
 
-        $this->container[$variableName] = $fields[$variableName]  $defaultValue;
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -415,7 +415,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
-        return $this->container[$offset]  null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -475,7 +475,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^par
                 // If it's an array type we should check whether it contains objects and if so call toArray method
                 } elseif (is_array($propertyValue)) {
                     $array[$propertyName] = array_map(function ($item) {
-                        return $item instanceof ModelInterface  $item->toArray() : $item;
+                        return $item instanceof ModelInterface ? $item->toArray() : $item;
                     }, $propertyValue);
                 } else {
                     // Otherwise, directly assign the property value to the array
