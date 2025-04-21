@@ -1,4 +1,4 @@
-class {{classname}} {{#lambdas.phpParent}}{{classname}} 1 {{/lambdas.phpParent}} {{^parentSchema}}implements ModelInterface, ArrayAccess{{/parentSchema}}
+class {{classname}} {{#lambdas.phpParent}}{{classname}} 1 {{/lambdas.phpParent}} {{^parentSchema}}implements ModelInterface, ArrayAccess, \JsonSerializable{{/parentSchema}}
 {
     public const DISCRIMINATOR = {{#discriminator}}'{{discriminatorName}}'{{/discriminator}}{{^discriminator}}null{{/discriminator}};
 
