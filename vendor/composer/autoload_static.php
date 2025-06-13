@@ -6,14 +6,46 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitb45b76475c96f2886e76a9612d0abd52
 {
-    public static $classMap = array (
-        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+    public static $prefixLengthsPsr4 = array (
+        'R' => 
+        array (
+            'Response\\' => 9,
+            'Request\\' => 8,
+        ),
+        'M' => 
+        array (
+            'Model\\' => 6,
+        ),
+        'C' => 
+        array (
+            'Client\\' => 7,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Response\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/response',
+        ),
+        'Request\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/request',
+        ),
+        'Model\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/model',
+        ),
+        'Client\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/client',
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInitb45b76475c96f2886e76a9612d0abd52::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb45b76475c96f2886e76a9612d0abd52::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb45b76475c96f2886e76a9612d0abd52::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }
